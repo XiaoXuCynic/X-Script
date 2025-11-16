@@ -196,7 +196,7 @@ about:Toggle("自动钓鱼", "", false, function(state)
     end
 end)
 
-about:Button("秒吃食物",function(state)
+about:Button("秒吃食物",function()
     if OAO.Character and OAO.Character:FindFirstChild("hunger") and OAO.Character.hunger.Value < 30 then
         for _,v in pairs(OAO.Backpack:GetChildren()) do
             if v:FindFirstChild("eat") then
@@ -245,76 +245,76 @@ end)
 about:Toggle("自动收集成熟品", "", false, function(state)
     OvO.AutoCollectHarvt = state
     if state then
-        if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
-            oldpos = OAO.Character.HumanoidRootPart.CFrame
-            spawn(function()
-                while OvO.AutoCollectHarvt do 
-                    task.wait()
-                    if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
-                        for _,v in next,workspace.harvest:GetChildren() do
-                            if v:FindFirstChild("main") then
-                                OAO.Character.HumanoidRootPart.CFrame = v.main.CFrame
-                                fireproximityprompt(v.main.ProximityPrompt)
-                            end
+        spawn(function()
+            local oldpos
+            if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
+                oldpos = OAO.Character.HumanoidRootPart.CFrame
+            end
+            while OvO.AutoCollectHarvt do 
+                task.wait()
+                if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
+                    for _,v in next,workspace.harvest:GetChildren() do
+                        if v:FindFirstChild("main") then
+                            OAO.Character.HumanoidRootPart.CFrame = v.main.CFrame
+                            fireproximityprompt(v.main.ProximityPrompt)
                         end
                     end
                 end
-            end)
-        end
-    else
-        if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
-            OAO.Character.HumanoidRootPart.CFrame = oldpos
-        end
+            end
+            if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") and oldpos then
+                OAO.Character.HumanoidRootPart.CFrame = oldpos
+            end
+        end)
     end
 end)
 
 about:Toggle("自动收集生鹿肉", "", false, function(state)
     OvO.AutoCollectHarvt = state
     if state then
-        if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
-            oldpos = OAO.Character.HumanoidRootPart.CFrame
-            spawn(function()
-                while OvO.AutoCollectHarvt do 
-                    task.wait()
-                    if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
-                        for _,v in next,workspace.interact:GetChildren() do
-                            if v.Name == "deer" and v:FindFirstChild("lungs,heart,intestines") then
-                                OAO.Character.HumanoidRootPart.CFrame = v["lungs,heart,intestines"].CFrame
-                                fireproximityprompt(v["lungs,heart,intestines"].ProximityPrompt)
-                            end
+        spawn(function()
+            local oldpos
+            if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
+                oldpos = OAO.Character.HumanoidRootPart.CFrame
+            end
+            while OvO.AutoCollectHarvt do 
+                task.wait()
+                if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
+                    for _,v in next,workspace.interact:GetChildren() do
+                        if v.Name == "deer" and v:FindFirstChild("lungs,heart,intestines") then
+                            OAO.Character.HumanoidRootPart.CFrame = v["lungs,heart,intestines"].CFrame
+                            fireproximityprompt(v["lungs,heart,intestines"].ProximityPrompt)
                         end
                     end
                 end
-            end)
-        end
-    else
-        if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
-            OAO.Character.HumanoidRootPart.CFrame = oldpos
-        end
+            end
+            if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") and oldpos then
+                OAO.Character.HumanoidRootPart.CFrame = oldpos
+            end
+        end)
     end
 end)
 
 about:Toggle("自动收集包菜", "", false, function(state)
     OvO.AutoCollectDirt = state
     if state then
-        if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
-            oldpos = OAO.Character.HumanoidRootPart.CFrame
-            spawn(function()
-                while OvO.AutoCollectDirt do 
-                    task.wait()
-                    if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
-                        if workspace.builds and workspace.builds["Cabbage Farm"] and workspace.builds["Cabbage Farm"]:FindFirstChild("dirt") then
-                            OAO.Character.HumanoidRootPart.CFrame = workspace.builds["Cabbage Farm"].dirt.CFrame
-                            fireproximityprompt(workspace.builds["Cabbage Farm"].dirt.ProximityPrompt)
-                        end
+        spawn(function()
+            local oldpos
+            if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
+                oldpos = OAO.Character.HumanoidRootPart.CFrame
+            end
+            while OvO.AutoCollectDirt do 
+                task.wait()
+                if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
+                    if workspace.builds and workspace.builds["Cabbage Farm"] and workspace.builds["Cabbage Farm"]:FindFirstChild("dirt") then
+                        OAO.Character.HumanoidRootPart.CFrame = workspace.builds["Cabbage Farm"].dirt.CFrame
+                        fireproximityprompt(workspace.builds["Cabbage Farm"].dirt.ProximityPrompt)
                     end
                 end
-            end)
-        end
-    else
-        if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") then
-            OAO.Character.HumanoidRootPart.CFrame = oldpos
-        end
+            end
+            if OAO.Character and OAO.Character:FindFirstChild("HumanoidRootPart") and oldpos then
+                OAO.Character.HumanoidRootPart.CFrame = oldpos
+            end
+        end)
     end
 end)
 
@@ -458,12 +458,11 @@ end)
 
 about:Button("传送空投", function()
     local Folder = workspace["Game Systems"]
-    local player = game.Players.LocalPlayer.Character.HumanoidRootPart
-
-    if Folder and player then
+    local player = game.Players.LocalPlayer.Character
+    if player and player:FindFirstChild("HumanoidRootPart") and Folder then
         for _, Child in ipairs(Folder:GetDescendants()) do
             if Child.Name:match("Airdrop_") and Child:FindFirstChild("MainPart") then 
-                player.CFrame = Child.MainPart.CFrame
+                player.HumanoidRootPart.CFrame = Child.MainPart.CFrame
             end
         end
     end
@@ -519,3 +518,4 @@ about:Button("范围", function()
         end
     end)
 end)
+[file content end]
